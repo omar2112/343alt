@@ -53,6 +53,7 @@ angular.module('CommentApp', ['ui.bootstrap'])
             $http.get(urlBeginning + "?order=-score")
                 .success(function (data) {
                     $scope.comments = data.results;
+                    $('#name').val(localStorage.getItem('userName'));
                 })
                 .error(function (err) {
                     $scope.errorMessage = err;
@@ -60,6 +61,7 @@ angular.module('CommentApp', ['ui.bootstrap'])
                 })
                 .finally(function () {
                     $scope.loading = false;
+                    $('#name').val(localStorage.getItem('userName'));
                 });
         };
 
@@ -90,10 +92,12 @@ angular.module('CommentApp', ['ui.bootstrap'])
                         console.log("this does work");
                         $scope.continueComment();
                         $scope.loading = false;
+                        $('#name').val(localStorage.getItem('userName'));
                     } else {
                         alert("You can't post the same title twice. Try contributing to the current post.");
                         console.log("this does not work");
                         $scope.loading = false;
+                        $('#name').val(localStorage.getItem('userName'));
                     }
                 });           
         };
